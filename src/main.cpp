@@ -5,9 +5,16 @@ using namespace std;
 
 int main()
 {
-    cout << "==================================" << endl;
-    cout << "       Welcome to CodeVault       " << endl;
-    cout << "==================================" << endl;
+    Question q1;
+
+    Question q2(
+        "Two Sum",
+        "Arrays",
+        "Easy",
+        "LeetCode"
+    );
+
+    cout << "Welcome to CodeVault!" << endl;
 
     return 0;
 }
