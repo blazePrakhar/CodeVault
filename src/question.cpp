@@ -24,3 +24,43 @@ Question::Question(std::string title,
     solved = false;
     favorite = false;
 }
+
+void Question::setTitle(std::string title)
+{
+    this->title = title;
+}
+
+std::string Question::getTitle() const
+{
+    return title;
+}
+
+void Question::setTopic(std::string topic)
+{
+    this->topic = topic;
+}
+
+std::string Question::getTopic() const
+{
+    return topic;
+}
+
+void Question::setDifficulty(std::string difficulty)
+{
+    this->difficulty = difficulty;
+}
+
+std::string Question::getDifficulty() const
+{
+    return difficulty;
+}
+
+void Question::setPlatform(std::string platform)
+{
+    this->platform = platform;
+}
+
+std::string Question::getPlatform() const
+{
+    return platform;
+}
