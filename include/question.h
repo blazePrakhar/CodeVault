@@ -33,6 +33,17 @@ public:
 
     void setPlatform(std::string platform);
     std::string getPlatform() const;
+
+
+    void displayQuestion() const;
+
+    void markSolved();
+
+    void toggleFavorite();
+
+    bool isSolved() const;
+    
+    bool isFavorite() const;
 };
 
 #endif

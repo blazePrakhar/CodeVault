@@ -64,3 +64,43 @@ std::string Question::getPlatform() const
 {
     return platform;
 }
+
+#include <iostream>
+
+void Question::displayQuestion() const
+{
+    std::cout << "\n===== Question =====" << std::endl;
+
+    std::cout << "Title      : " << title << std::endl;
+    std::cout << "Topic      : " << topic << std::endl;
+    std::cout << "Difficulty : " << difficulty << std::endl;
+    std::cout << "Platform   : " << platform << std::endl;
+
+    std::cout << "Solved     : "
+              << (solved ? "Yes" : "No")
+              << std::endl;
+
+    std::cout << "Favorite   : "
+              << (favorite ? "Yes" : "No")
+              << std::endl;
+}
+
+void Question::markSolved()
+{
+    solved = true;
+}
+
+void Question::toggleFavorite()
+{
+    favorite = !favorite;
+}
+
+bool Question::isSolved() const
+{
+    return solved;
+}
+
+bool Question::isFavorite() const
+{
+    return favorite;
+}
