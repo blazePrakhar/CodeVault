@@ -1,20 +1,27 @@
 #include <iostream>
-#include "./../include/question.h"
+#include "../include/question.h"
+#include "../include/vault.h"
 
 using namespace std;
 
 int main()
 {
-    Question q1("Two Sum",
-                "Arrays",
-                "Easy",
-                "LeetCode");
+    Vault vault;
 
-    q1.markSolved();
+    Question q1("Two Sum", "Arrays", "Easy", "LeetCode");
+    Question q2("Binary Search", "Arrays", "Easy", "LeetCode");
+    Question q3("Merge Intervals", "Arrays", "Medium", "LeetCode");
 
-    q1.toggleFavorite();
+    vault.addQuestion(q1);
+    vault.addQuestion(q2);
+    vault.addQuestion(q3);
 
-    q1.displayQuestion();
+    cout << "Total Questions: "
+         << vault.getQuestionCount()
+         << endl
+         << endl;
+
+    vault.displayAllQuestions();
 
     return 0;
 }
