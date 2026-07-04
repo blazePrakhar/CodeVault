@@ -8,20 +8,78 @@ int main()
 {
     Vault vault;
 
-    Question q1("Two Sum", "Arrays", "Easy", "LeetCode");
-    Question q2("Binary Search", "Arrays", "Easy", "LeetCode");
-    Question q3("Merge Intervals", "Arrays", "Medium", "LeetCode");
+    int choice;
 
-    vault.addQuestion(q1);
-    vault.addQuestion(q2);
-    vault.addQuestion(q3);
+    string title;
+    string topic;
+    string difficulty;
+    string platform;
 
-    cout << "Total Questions: "
-         << vault.getQuestionCount()
-         << endl
-         << endl;
+    while (true)
+    {
+        cout << "\n========== CodeVault ==========\n";
+        cout << "1. Add Question\n";
+        cout << "2. Display All Questions\n";
+        cout << "3. Exit\n";
 
-    vault.displayAllQuestions();
+        cout << "\nEnter Choice: ";
+        cin >> choice;
 
-    return 0;
+        switch (choice)
+        {
+        case 1:
+        {
+            cin.ignore();
+
+            cout << "\nEnter Title: ";
+            getline(cin, title);
+
+            cout << "Enter Topic: ";
+            getline(cin, topic);
+
+            cout << "Enter Difficulty: ";
+            getline(cin, difficulty);
+
+            cout << "Enter Platform: ";
+            getline(cin, platform);
+
+            Question question(title,
+                              topic,
+                              difficulty,
+                              platform);
+
+            vault.addQuestion(question);
+
+            cout << "\nQuestion Added Successfully!\n";
+
+            break;
+        }
+
+        case 2:
+        {
+            if (vault.getQuestionCount() == 0)
+            {
+                cout << "\nNo Questions Available.\n";
+            }
+            else
+            {
+                vault.displayAllQuestions();
+            }
+
+            break;
+        }
+
+        case 3:
+        {
+            cout << "Thank you for using CodeVault!\n";
+            return 0;
+        }
+
+        default:
+        {
+            cout << "Invalid Choice!\n";
+        }
+        
+        }
+    }
 }
