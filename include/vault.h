@@ -17,6 +17,8 @@ public:
     void displayAllQuestions() const;
 
     int getQuestionCount() const;
+
+    Question *searchQuestionByTitle(const std::string &title);
 };
 
 #endif

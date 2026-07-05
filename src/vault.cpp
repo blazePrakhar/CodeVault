@@ -21,3 +21,16 @@ int Vault::getQuestionCount() const
 {
     return questions.size();
 }
+
+Question *Vault::searchQuestionByTitle(const std::string &title)
+{
+    for (Question &question : questions)
+    {
+        if (question.getTitle() == title)
+        {
+            return &question;
+        }
+    }
+
+    return nullptr;
+}
