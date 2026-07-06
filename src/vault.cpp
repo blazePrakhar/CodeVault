@@ -34,3 +34,17 @@ Question *Vault::searchQuestionByTitle(const std::string &title)
 
     return nullptr;
 }
+
+bool Vault::deleteQuestionByTitle(const std::string &title)
+{
+    for (auto it = questions.begin(); it != questions.end(); ++it)
+    {
+        if (it->getTitle() == title)
+        {
+            questions.erase(it);
+            return true;
+        }
+    }
+
+    return false;
+}

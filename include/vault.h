@@ -19,6 +19,8 @@ public:
     int getQuestionCount() const;
 
     Question *searchQuestionByTitle(const std::string &title);
+
+    bool deleteQuestionByTitle(const std::string &title);
 };
 
 #endif

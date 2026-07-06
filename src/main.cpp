@@ -16,14 +16,15 @@ int main()
     string platform;
 
     Question *foundQuestion;
+    bool isDeleted;
 
     while (true)
     {
-        cout << "\n========== CodeVault ==========\n";
         cout << "1. Add Question\n";
         cout << "2. Display All Questions\n";
         cout << "3. Search Question\n";
-        cout << "4. Exit\n";
+        cout << "4. Delete Question\n";
+        cout << "5. Exit\n";
 
         cout << "\nEnter Choice: ";
         cin >> choice;
@@ -95,6 +96,27 @@ int main()
         }
 
         case 4:
+        {
+            cin.ignore();
+
+            cout << "\nEnter Question Title to Delete: ";
+            getline(cin, title);
+
+            isDeleted = vault.deleteQuestionByTitle(title);
+
+            if (isDeleted)
+            {
+                cout << "\nQuestion Deleted Successfully!\n";
+            }
+            else
+            {
+                cout << "\nQuestion Not Found!\n";
+            }
+
+            break;
+        }
+
+        case 5:
         {
             cout << "\nThank you for using CodeVault!\n";
             return 0;
