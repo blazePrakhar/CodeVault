@@ -128,24 +128,84 @@ int main()
 
             if (foundQuestion != nullptr)
             {
-                cout << "\nEnter New Title: ";
-                getline(cin, title);
+                cout << "\n===== Current Question =====\n";
+                foundQuestion->displayQuestion();
 
-                cout << "Enter New Topic: ";
-                getline(cin, topic);
+                int updateChoice;
 
-                cout << "Enter New Difficulty: ";
-                getline(cin, difficulty);
+                cout << "\nWhat do you want to update?\n";
+                cout << "1. Title\n";
+                cout << "2. Topic\n";
+                cout << "3. Difficulty\n";
+                cout << "4. Platform\n";
+                cout << "5. Cancel\n";
 
-                cout << "Enter New Platform: ";
-                getline(cin, platform);
+                cout << "\nEnter Choice: ";
+                cin >> updateChoice;
+                cin.ignore();
 
-                foundQuestion->setTitle(title);
-                foundQuestion->setTopic(topic);
-                foundQuestion->setDifficulty(difficulty);
-                foundQuestion->setPlatform(platform);
+                switch (updateChoice)
+                {
+                case 1:
+                {
+                    cout << "Enter New Title: ";
+                    getline(cin, title);
 
-                cout << "\nQuestion Updated Successfully!\n";
+                    foundQuestion->setTitle(title);
+
+                    cout << "\nTitle Updated Successfully!\n";
+                    break;
+                }
+
+                case 2:
+                {
+                    cout << "Enter New Topic: ";
+                    getline(cin, topic);
+
+                    foundQuestion->setTopic(topic);
+
+                    cout << "\nTopic Updated Successfully!\n";
+                    break;
+                }
+
+                case 3:
+                {
+                    cout << "Enter New Difficulty: ";
+                    getline(cin, difficulty);
+
+                    foundQuestion->setDifficulty(difficulty);
+
+                    cout << "\nDifficulty Updated Successfully!\n";
+                    break;
+                }
+
+                case 4:
+                {
+                    cout << "Enter New Platform: ";
+                    getline(cin, platform);
+
+                    foundQuestion->setPlatform(platform);
+
+                    cout << "\nPlatform Updated Successfully!\n";
+                    break;
+                }
+
+                case 5:
+                {
+                    cout << "\nUpdate Cancelled.\n";
+                    break;
+                }
+
+                default:
+                {
+                    cout << "\nInvalid Choice!\n";
+                }
+                }
+                if (updateChoice >= 1 && updateChoice <= 4)
+                {
+                    cout << "\n===== Updated Question =====\n";
+                    foundQuestion->displayQuestion();
+                }
             }
             else
             {
