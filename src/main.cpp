@@ -55,6 +55,8 @@ int main()
 
             vault.addQuestion(question);
 
+            vault.saveQuestionsToFile();
+
             cout << "\nQuestion Added Successfully!\n";
 
             break;
@@ -107,6 +109,7 @@ int main()
 
             if (isDeleted)
             {
+                vault.saveQuestionsToFile();
                 cout << "\nQuestion Deleted Successfully!\n";
             }
             else
@@ -203,6 +206,9 @@ int main()
                 }
                 if (updateChoice >= 1 && updateChoice <= 4)
                 {
+
+                    vault.saveQuestionsToFile();
+
                     cout << "\n===== Updated Question =====\n";
                     foundQuestion->displayQuestion();
                 }

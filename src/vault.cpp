@@ -1,3 +1,5 @@
+#include <iostream>
+#include <fstream>
 #include "../include/vault.h"
 
 Vault::Vault()
@@ -47,4 +49,26 @@ bool Vault::deleteQuestionByTitle(const std::string &title)
     }
 
     return false;
+}
+
+void Vault::saveQuestionsToFile() const
+{
+    std::ofstream file("data/questions.txt");
+
+    if (!file)
+    {
+        std::cout << "Error opening file!" << std::endl;
+        return;
+    }
+
+    for (const Question &question : questions)
+    {
+        file << question.getTitle() << "|"
+             << question.getTopic() << "|"
+             << question.getDifficulty() << "|"
+             << question.getPlatform()
+             << std::endl;
+    }
+
+    file.close();
 }

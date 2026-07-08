@@ -21,6 +21,8 @@ public:
     Question *searchQuestionByTitle(const std::string &title);
 
     bool deleteQuestionByTitle(const std::string &title);
+
+    void saveQuestionsToFile() const;
 };
 
 #endif
