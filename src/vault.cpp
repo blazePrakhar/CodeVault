@@ -1,9 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "../include/vault.h"
 
 Vault::Vault()
 {
+    loadQuestionsFromFile();
 }
 
 void Vault::addQuestion(const Question &question)
@@ -72,3 +74,40 @@ void Vault::saveQuestionsToFile() const
 
     file.close();
 }
+
+void Vault::loadQuestionsFromFile()
+{
+    std::ifstream file("data/questions.txt");
+
+    if (!file)
+    {
+        return;
+    }
+
+    std::string line;
+
+    while (getline(file, line))
+    {
+        std::stringstream ss(line);
+
+        std::string title;
+        std::string topic;
+        std::string difficulty;
+        std::string platform;
+
+        getline(ss, title, '|');
+        getline(ss, topic, '|');
+        getline(ss, difficulty, '|');
+        getline(ss, platform);
+
+        Question question(title,
+                          topic,
+                          difficulty,
+                          platform);
+
+        questions.push_back(question);
+    }
+
+    file.close();
+}
+

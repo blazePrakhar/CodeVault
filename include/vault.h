@@ -23,6 +23,8 @@ public:
     bool deleteQuestionByTitle(const std::string &title);
 
     void saveQuestionsToFile() const;
+
+    void loadQuestionsFromFile();
 };
 
 #endif

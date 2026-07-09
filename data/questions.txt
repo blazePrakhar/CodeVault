@@ -1,1 +1,2 @@
 Two Sum|Arrays|Easy|LeetCode
+Binary Search|Arrays|Easy|LeetCode
