@@ -15,9 +15,17 @@ void Vault::addQuestion(const Question &question)
 
 void Vault::displayAllQuestions() const
 {
+    int index = 1;
+
     for (const Question &question : questions)
     {
+        std::cout << "\n========== Question #"
+                  << index++
+                  << " ==========\n";
+
         question.displayQuestion();
+
+        std::cout << "-----------------------------\n";
     }
 }
 
@@ -110,4 +118,3 @@ void Vault::loadQuestionsFromFile()
 
     file.close();
 }
-

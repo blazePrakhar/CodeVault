@@ -20,8 +20,9 @@ int main()
 
     while (true)
     {
+        cout << "\n========== CodeVault ==========\n";
         cout << "1. Add Question\n";
-        cout << "2. Display All Questions\n";
+        cout << "2. Display Questions\n";
         cout << "3. Search Question\n";
         cout << "4. Delete Question\n";
         cout << "5. Update Question\n";
@@ -57,7 +58,11 @@ int main()
 
             vault.saveQuestionsToFile();
 
-            cout << "\nQuestion Added Successfully!\n";
+            cout << "\n=================================\n";
+            cout << "Question Added Successfully!\n";
+            cout << "Current Total Questions: "
+                 << vault.getQuestionCount() << endl;
+            cout << "=================================\n";
 
             break;
         }
@@ -66,7 +71,8 @@ int main()
         {
             if (vault.getQuestionCount() == 0)
             {
-                cout << "\nNo Questions Available.\n";
+                cout << "\n========== CodeVault ==========\n";
+                cout << "No Questions Available.\n";
             }
             else
             {
@@ -87,7 +93,7 @@ int main()
 
             if (foundQuestion != nullptr)
             {
-                cout << "\nQuestion Found!\n";
+                cout << "\n========== Search Result ==========\n";
                 foundQuestion->displayQuestion();
             }
             else
