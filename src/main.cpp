@@ -8,6 +8,11 @@ int main()
 {
     Vault vault;
 
+    cout << "====================================\n";
+    cout << "      Welcome to CodeVault!\n";
+    cout << " Your Personal Coding Manager\n";
+    cout << "====================================\n\n";
+
     int choice;
 
     string title;
@@ -15,18 +20,21 @@ int main()
     string difficulty;
     string platform;
 
-    Question *foundQuestion;
-    bool isDeleted;
+    Question *foundQuestion = nullptr;
+    bool isDeleted = false;
 
     while (true)
     {
-        cout << "\n========== CodeVault ==========\n";
+        cout << "\n====================================\n";
+        cout << "         CodeVault v1.0\n";
+        cout << "====================================\n";
         cout << "1. Add Question\n";
         cout << "2. Display Questions\n";
         cout << "3. Search Question\n";
         cout << "4. Delete Question\n";
         cout << "5. Update Question\n";
         cout << "6. Exit\n";
+        cout << "====================================\n";
 
         cout << "\nEnter Choice: ";
         cin >> choice;
@@ -58,11 +66,15 @@ int main()
 
             vault.saveQuestionsToFile();
 
-            cout << "\n=================================\n";
+            cout << "\n====================================\n";
             cout << "Question Added Successfully!\n";
-            cout << "Current Total Questions: "
+            cout << "Current Total Questions : "
                  << vault.getQuestionCount() << endl;
-            cout << "=================================\n";
+
+            cout << "\n========== Added Question ==========\n";
+            question.displayQuestion();
+
+            cout << "====================================\n";
 
             break;
         }
@@ -86,19 +98,24 @@ int main()
         {
             cin.ignore();
 
-            cout << "\nEnter Question Title: ";
+            cout << "\nEnter Exact Question Title: ";
             getline(cin, title);
 
             foundQuestion = vault.searchQuestionByTitle(title);
 
             if (foundQuestion != nullptr)
             {
-                cout << "\n========== Search Result ==========\n";
+                cout << "\n====================================\n";
+                cout << "Question Found Successfully!\n";
+                cout << "====================================\n";
+
                 foundQuestion->displayQuestion();
             }
             else
             {
-                cout << "\nQuestion Not Found!\n";
+                cout << "\n====================================\n";
+                cout << "No matching question found.\n";
+                cout << "====================================\n";
             }
 
             break;
@@ -108,7 +125,7 @@ int main()
         {
             cin.ignore();
 
-            cout << "\nEnter Question Title to Delete: ";
+            cout << "\nEnter Exact Question Title to Delete: ";
             getline(cin, title);
 
             isDeleted = vault.deleteQuestionByTitle(title);
@@ -120,7 +137,11 @@ int main()
             }
             else
             {
-                cout << "\nQuestion Not Found!\n";
+                cout << "\n====================================\n";
+                cout << "Question Deleted Successfully!\n";
+                cout << "Remaining Questions : "
+                     << vault.getQuestionCount() << endl;
+                cout << "====================================\n";
             }
 
             break;
@@ -142,7 +163,9 @@ int main()
 
                 int updateChoice;
 
-                cout << "\nWhat do you want to update?\n";
+                cout << "\n====================================\n";
+                cout << "What do you want to update?\n";
+                cout << "====================================\n";
                 cout << "1. Title\n";
                 cout << "2. Topic\n";
                 cout << "3. Difficulty\n";
@@ -215,7 +238,10 @@ int main()
 
                     vault.saveQuestionsToFile();
 
-                    cout << "\n===== Updated Question =====\n";
+                    cout << "\n====================================\n";
+                    cout << "Question Updated Successfully!\n";
+                    cout << "====================================\n";
+
                     foundQuestion->displayQuestion();
                 }
             }
@@ -229,13 +255,18 @@ int main()
 
         case 6:
         {
-            cout << "\nThank you for using CodeVault!\n";
+            cout << "\n====================================\n";
+            cout << "Thank you for using CodeVault!\n";
+            cout << "Happy Coding! 🚀\n";
+            cout << "====================================\n";
             return 0;
         }
 
         default:
         {
-            cout << "Invalid Choice!\n";
+            cout << "\n====================================\n";
+            cout << "Invalid Choice! Please try again.\n";
+            cout << "====================================\n";
         }
         }
     }
