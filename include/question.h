@@ -10,6 +10,8 @@ private:
     std::string topic;
     std::string difficulty;
     std::string platform;
+    std::string language;
+    std::string solutionFile;
 
     bool solved;
     bool favorite;
@@ -20,7 +22,9 @@ public:
     Question(std::string title,
              std::string topic,
              std::string difficulty,
-             std::string platform);
+             std::string platform,
+             std::string language,
+             std::string solutionFile);
 
     void setTitle(std::string title);
     std::string getTitle() const;
@@ -33,6 +37,12 @@ public:
 
     void setPlatform(std::string platform);
     std::string getPlatform() const;
+
+    void setLanguage(std::string language);
+    std::string getLanguage() const;
+
+    void setSolutionFile(std::string solutionFile);
+    std::string getSolutionFile() const;
 
     void displayQuestion() const;
 

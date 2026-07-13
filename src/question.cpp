@@ -1,3 +1,4 @@
+#include <iostream>
 #include "../include/question.h"
 
 Question::Question()
@@ -6,6 +7,7 @@ Question::Question()
     topic = "";
     difficulty = "";
     platform = "";
+    language = "";
 
     solved = false;
     favorite = false;
@@ -14,12 +16,16 @@ Question::Question()
 Question::Question(std::string title,
                    std::string topic,
                    std::string difficulty,
-                   std::string platform)
+                   std::string platform,
+                   std::string language,
+                   std::string solutionFile)
 {
     this->title = title;
     this->topic = topic;
     this->difficulty = difficulty;
     this->platform = platform;
+    this->language = language;
+    this->solutionFile = solutionFile;
 
     solved = false;
     favorite = false;
@@ -65,7 +71,25 @@ std::string Question::getPlatform() const
     return platform;
 }
 
-#include <iostream>
+void Question::setLanguage(std::string language)
+{
+    this->language = language;
+}
+
+std::string Question::getLanguage() const
+{
+    return language;
+}
+
+void Question::setSolutionFile(std::string solutionFile)
+{
+    this->solutionFile = solutionFile;
+}
+
+std::string Question::getSolutionFile() const
+{
+    return solutionFile;
+}
 
 void Question::displayQuestion() const
 {
@@ -75,6 +99,8 @@ void Question::displayQuestion() const
     std::cout << "Topic      : " << topic << std::endl;
     std::cout << "Difficulty : " << difficulty << std::endl;
     std::cout << "Platform   : " << platform << std::endl;
+    std::cout << "Language   : " << language << std::endl;
+    std::cout << "Solution   : " << solutionFile << std::endl;
 
     std::cout << "Solved     : "
               << (solved ? "Yes" : "No")
