@@ -19,6 +19,8 @@ int main()
     string topic;
     string difficulty;
     string platform;
+    string language;
+    string solutionFile;
 
     Question *foundQuestion = nullptr;
     bool isDeleted = false;
@@ -57,10 +59,18 @@ int main()
             cout << "Enter Platform: ";
             getline(cin, platform);
 
+            cout << "Enter Language: ";
+            getline(cin, language);
+
+            cout << "Enter Solution File: ";
+            getline(cin, solutionFile);
+
             Question question(title,
                               topic,
                               difficulty,
-                              platform);
+                              platform,
+                              language,
+                              solutionFile);
 
             vault.addQuestion(question);
 
@@ -133,14 +143,17 @@ int main()
             if (isDeleted)
             {
                 vault.saveQuestionsToFile();
-                cout << "\nQuestion Deleted Successfully!\n";
-            }
-            else
-            {
+
                 cout << "\n====================================\n";
                 cout << "Question Deleted Successfully!\n";
                 cout << "Remaining Questions : "
                      << vault.getQuestionCount() << endl;
+                cout << "====================================\n";
+            }
+            else
+            {
+                cout << "\n====================================\n";
+                cout << "Question Not Found!\n";
                 cout << "====================================\n";
             }
 
@@ -170,7 +183,9 @@ int main()
                 cout << "2. Topic\n";
                 cout << "3. Difficulty\n";
                 cout << "4. Platform\n";
-                cout << "5. Cancel\n";
+                cout << "5. Language\n";
+                cout << "6. Solution File\n";
+                cout << "7. Cancel\n";
 
                 cout << "\nEnter Choice: ";
                 cin >> updateChoice;
@@ -224,6 +239,28 @@ int main()
 
                 case 5:
                 {
+                    cout << "Enter New Language: ";
+                    getline(cin, language);
+
+                    foundQuestion->setLanguage(language);
+
+                    cout << "\nLanguage Updated Successfully!\n";
+                    break;
+                }
+
+                case 6:
+                {
+                    cout << "Enter New Solution File: ";
+                    getline(cin, solutionFile);
+
+                    foundQuestion->setSolutionFile(solutionFile);
+
+                    cout << "\nSolution File Updated Successfully!\n";
+                    break;
+                }
+
+                case 7:
+                {
                     cout << "\nUpdate Cancelled.\n";
                     break;
                 }
@@ -233,7 +270,7 @@ int main()
                     cout << "\nInvalid Choice!\n";
                 }
                 }
-                if (updateChoice >= 1 && updateChoice <= 4)
+                if (updateChoice >= 1 && updateChoice <= 6)
                 {
 
                     vault.saveQuestionsToFile();
@@ -257,7 +294,7 @@ int main()
         {
             cout << "\n====================================\n";
             cout << "Thank you for using CodeVault!\n";
-            cout << "Happy Coding! 🚀\n";
+            cout << "Happy Coding!\n";
             cout << "====================================\n";
             return 0;
         }

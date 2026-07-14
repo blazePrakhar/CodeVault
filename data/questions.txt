@@ -1,2 +1,1 @@
-Binary Search|Arrays|Medium|LeetCode
-Two Sum|Arrays|Easy|LeetCode
+Two Sum|Arrays|Easy|LeetCode|C++, Java|two_sum

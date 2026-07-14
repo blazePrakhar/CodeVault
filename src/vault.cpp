@@ -76,7 +76,9 @@ void Vault::saveQuestionsToFile() const
         file << question.getTitle() << "|"
              << question.getTopic() << "|"
              << question.getDifficulty() << "|"
-             << question.getPlatform()
+             << question.getPlatform() << "|"
+             << question.getLanguage() << "|"
+             << question.getSolutionFile()
              << std::endl;
     }
 
@@ -102,16 +104,22 @@ void Vault::loadQuestionsFromFile()
         std::string topic;
         std::string difficulty;
         std::string platform;
+        std::string language;
+        std::string solutionFile;
 
         getline(ss, title, '|');
         getline(ss, topic, '|');
         getline(ss, difficulty, '|');
-        getline(ss, platform);
+        getline(ss, platform, '|');
+        getline(ss, language, '|');
+        getline(ss, solutionFile);
 
         Question question(title,
                           topic,
                           difficulty,
-                          platform);
+                          platform,
+                          language,
+                          solutionFile);
 
         questions.push_back(question);
     }
