@@ -1,8 +1,27 @@
 #include <iostream>
+#include <cctype>
 #include "../include/question.h"
 #include "../include/vault.h"
+#include "../include/fileManager.h"
 
 using namespace std;
+
+string generateFileName(string title)
+{
+    for (char &c : title)
+    {
+        if (c == ' ')
+        {
+            c = '_';
+        }
+        else
+        {
+            c = tolower(c);
+        }
+    }
+
+    return title;
+}
 
 int main()
 {
@@ -20,7 +39,7 @@ int main()
     string difficulty;
     string platform;
     string language;
-    string solutionFile;
+    string solutionPath;
 
     Question *foundQuestion = nullptr;
     bool isDeleted = false;
@@ -62,15 +81,18 @@ int main()
             cout << "Enter Language: ";
             getline(cin, language);
 
-            cout << "Enter Solution File: ";
-            getline(cin, solutionFile);
+            solutionPath = FileManager::createSolutionFile(title,
+                                                           language);
+
+            cout << "\nSolution File Created:\n";
+            cout << solutionPath << endl;
 
             Question question(title,
                               topic,
                               difficulty,
                               platform,
                               language,
-                              solutionFile);
+                              solutionPath);
 
             vault.addQuestion(question);
 
@@ -251,9 +273,9 @@ int main()
                 case 6:
                 {
                     cout << "Enter New Solution File: ";
-                    getline(cin, solutionFile);
+                    getline(cin, solutionPath);
 
-                    foundQuestion->setSolutionFile(solutionFile);
+                    foundQuestion->setSolutionPath(solutionPath);
 
                     cout << "\nSolution File Updated Successfully!\n";
                     break;

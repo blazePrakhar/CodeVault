@@ -18,14 +18,14 @@ Question::Question(std::string title,
                    std::string difficulty,
                    std::string platform,
                    std::string language,
-                   std::string solutionFile)
+                   std::string solutionPath)
 {
     this->title = title;
     this->topic = topic;
     this->difficulty = difficulty;
     this->platform = platform;
     this->language = language;
-    this->solutionFile = solutionFile;
+    this->solutionPath = solutionPath;
 
     solved = false;
     favorite = false;
@@ -81,14 +81,14 @@ std::string Question::getLanguage() const
     return language;
 }
 
-void Question::setSolutionFile(std::string solutionFile)
+void Question::setSolutionPath(std::string solutionPath)
 {
-    this->solutionFile = solutionFile;
+    this->solutionPath = solutionPath;
 }
 
-std::string Question::getSolutionFile() const
+std::string Question::getSolutionPath() const
 {
-    return solutionFile;
+    return solutionPath;
 }
 
 void Question::displayQuestion() const
@@ -100,7 +100,7 @@ void Question::displayQuestion() const
     std::cout << "Difficulty : " << difficulty << std::endl;
     std::cout << "Platform   : " << platform << std::endl;
     std::cout << "Language   : " << language << std::endl;
-    std::cout << "Solution   : " << solutionFile << std::endl;
+    std::cout << "Solution   : " << solutionPath << std::endl;
 
     std::cout << "Solved     : "
               << (solved ? "Yes" : "No")

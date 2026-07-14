@@ -11,7 +11,7 @@ private:
     std::string difficulty;
     std::string platform;
     std::string language;
-    std::string solutionFile;
+    std::string solutionPath;
 
     bool solved;
     bool favorite;
@@ -24,7 +24,7 @@ public:
              std::string difficulty,
              std::string platform,
              std::string language,
-             std::string solutionFile);
+             std::string solutionPath);
 
     void setTitle(std::string title);
     std::string getTitle() const;
@@ -41,8 +41,8 @@ public:
     void setLanguage(std::string language);
     std::string getLanguage() const;
 
-    void setSolutionFile(std::string solutionFile);
-    std::string getSolutionFile() const;
+    void setSolutionPath(std::string solutionPath);
+    std::string getSolutionPath() const;
 
     void displayQuestion() const;
 
