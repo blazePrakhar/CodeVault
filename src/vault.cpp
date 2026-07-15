@@ -138,3 +138,36 @@ void Vault::loadQuestionsFromFile()
 
     file.close();
 }
+
+void Vault::displayStatistics() const
+{
+    int totalQuestions = questions.size();
+    int solvedQuestions = 0;
+    int favoriteQuestions = 0;
+
+    for (const Question &question : questions)
+    {
+        if (question.isSolved())
+        {
+            solvedQuestions++;
+        }
+
+        if (question.isFavorite())
+        {
+            favoriteQuestions++;
+        }
+    }
+
+    int unsolvedQuestions = totalQuestions - solvedQuestions;
+
+    std::cout << "\n====================================\n";
+    std::cout << "      CodeVault Statistics\n";
+    std::cout << "====================================\n";
+
+    std::cout << "Total Questions     : " << totalQuestions << std::endl;
+    std::cout << "Solved Questions    : " << solvedQuestions << std::endl;
+    std::cout << "Unsolved Questions  : " << unsolvedQuestions << std::endl;
+    std::cout << "Favorite Questions  : " << favoriteQuestions << std::endl;
+
+    std::cout << "====================================\n";
+}

@@ -56,7 +56,8 @@ int main()
         cout << "5. Update Question\n";
         cout << "6. Mark Question as Solved\n";
         cout << "7. Toggle Favorite\n";
-        cout << "8. Exit\n";
+        cout << "8. View Statistics\n";
+        cout << "9. Exit\n";
         cout << "====================================\n";
 
         cout << "\nEnter Choice: ";
@@ -397,6 +398,12 @@ int main()
         }
 
         case 8:
+        {
+            vault.displayStatistics();
+            break;
+        }
+
+        case 9:
         {
             cout << "\n====================================\n";
             cout << "Thank you for using CodeVault!\n";
