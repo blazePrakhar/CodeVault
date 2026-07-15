@@ -78,7 +78,10 @@ void Vault::saveQuestionsToFile() const
              << question.getDifficulty() << "|"
              << question.getPlatform() << "|"
              << question.getLanguage() << "|"
-             << question.getSolutionPath()
+             << question.getSolutionPath() << "|"
+             << question.isSolved() << "|"
+             << question.isFavorite()
+
              << std::endl;
     }
 
@@ -106,20 +109,29 @@ void Vault::loadQuestionsFromFile()
         std::string platform;
         std::string language;
         std::string solutionPath;
+        std::string solvedString;
+        std::string favoriteString;
 
         getline(ss, title, '|');
         getline(ss, topic, '|');
         getline(ss, difficulty, '|');
         getline(ss, platform, '|');
         getline(ss, language, '|');
-        getline(ss, solutionPath);
+        getline(ss, solutionPath, '|');
+        getline(ss, solvedString, '|');
+        getline(ss, favoriteString);
+
+        bool solved = (solvedString == "1");
+        bool favorite = (favoriteString == "1");
 
         Question question(title,
                           topic,
                           difficulty,
                           platform,
                           language,
-                          solutionPath);
+                          solutionPath,
+                          solved,
+                          favorite);
 
         questions.push_back(question);
     }

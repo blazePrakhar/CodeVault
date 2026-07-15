@@ -1,1 +1,1 @@
-Two Sum|Arrays|Easy|LeetCode|C++|solutions/cpp/two_sum.cpp
+Two Sum|Arrays|Easy|LeetCode|C++|solutions/cpp/two_sum.cpp|1|0

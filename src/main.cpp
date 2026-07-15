@@ -54,7 +54,9 @@ int main()
         cout << "3. Search Question\n";
         cout << "4. Delete Question\n";
         cout << "5. Update Question\n";
-        cout << "6. Exit\n";
+        cout << "6. Mark Question as Solved\n";
+        cout << "7. Toggle Favorite\n";
+        cout << "8. Exit\n";
         cout << "====================================\n";
 
         cout << "\nEnter Choice: ";
@@ -92,7 +94,9 @@ int main()
                               difficulty,
                               platform,
                               language,
-                              solutionPath);
+                              solutionPath,
+                              false,
+                              false);
 
             vault.addQuestion(question);
 
@@ -313,6 +317,86 @@ int main()
         }
 
         case 6:
+        {
+            cin.ignore();
+
+            cout << "\nEnter Question Title: ";
+            getline(cin, title);
+
+            foundQuestion = vault.searchQuestionByTitle(title);
+
+            if (foundQuestion != nullptr)
+            {
+                if (foundQuestion->isSolved())
+                {
+                    cout << "\n====================================\n";
+                    cout << "Question is already marked as solved.\n";
+                    cout << "====================================\n";
+                }
+                else
+                {
+                    foundQuestion->markSolved();
+
+                    vault.saveQuestionsToFile();
+
+                    cout << "\n====================================\n";
+                    cout << "Question marked as solved successfully!\n";
+                    cout << "====================================\n";
+
+                    foundQuestion->displayQuestion();
+                }
+            }
+            else
+            {
+                cout << "\n====================================\n";
+                cout << "Question Not Found!\n";
+                cout << "====================================\n";
+            }
+
+            break;
+        }
+
+        case 7:
+        {
+            cin.ignore();
+
+            cout << "\nEnter Question Title: ";
+            getline(cin, title);
+
+            foundQuestion = vault.searchQuestionByTitle(title);
+
+            if (foundQuestion != nullptr)
+            {
+                foundQuestion->toggleFavorite();
+
+                vault.saveQuestionsToFile();
+
+                cout << "\n====================================\n";
+
+                if (foundQuestion->isFavorite())
+                {
+                    cout << "Question added to favorites!\n";
+                }
+                else
+                {
+                    cout << "Question removed from favorites!\n";
+                }
+
+                cout << "====================================\n";
+
+                foundQuestion->displayQuestion();
+            }
+            else
+            {
+                cout << "\n====================================\n";
+                cout << "Question Not Found!\n";
+                cout << "====================================\n";
+            }
+
+            break;
+        }
+
+        case 8:
         {
             cout << "\n====================================\n";
             cout << "Thank you for using CodeVault!\n";

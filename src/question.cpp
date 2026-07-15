@@ -18,7 +18,9 @@ Question::Question(std::string title,
                    std::string difficulty,
                    std::string platform,
                    std::string language,
-                   std::string solutionPath)
+                   std::string solutionPath,
+                   bool solved,
+                   bool favorite)
 {
     this->title = title;
     this->topic = topic;
@@ -27,8 +29,8 @@ Question::Question(std::string title,
     this->language = language;
     this->solutionPath = solutionPath;
 
-    solved = false;
-    favorite = false;
+    this->solved = solved;
+    this->favorite = favorite;
 }
 
 void Question::setTitle(std::string title)

@@ -24,7 +24,9 @@ public:
              std::string difficulty,
              std::string platform,
              std::string language,
-             std::string solutionPath);
+             std::string solutionPath,
+             bool solved,
+             bool favorite);
 
     void setTitle(std::string title);
     std::string getTitle() const;
