@@ -20,15 +20,33 @@ public:
 
     void filterByDifficulty(const std::string &difficulty) const;
 
+    void filterByLanguage(const std::string &language) const;
+
+    void filterByPlatform(const std::string &platform) const;
+
+    void showSolvedQuestions() const;
+
+    void showFavoriteQuestions() const;
+
     int getQuestionCount() const;
 
     Question *searchQuestionByTitle(const std::string &title);
 
     bool deleteQuestionByTitle(const std::string &title);
 
+    bool questionExists(const std::string &title) const;
+
     void saveQuestionsToFile() const;
 
     void loadQuestionsFromFile();
+
+    void sortByTitle();
+
+    void sortByDifficulty();
+
+    void sortByPlatform();
+
+    void sortByLanguage();
 };
 
 #endif

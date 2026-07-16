@@ -47,7 +47,7 @@ int main()
     while (true)
     {
         cout << "\n====================================\n";
-        cout << "         CodeVault v1.0\n";
+        cout << "         CodeVault v2.0\n";
         cout << "====================================\n";
         cout << "1. Add Question\n";
         cout << "2. Display Questions\n";
@@ -58,11 +58,33 @@ int main()
         cout << "7. Toggle Favorite\n";
         cout << "8. View Statistics\n";
         cout << "9. Filter Questions\n";
-        cout << "10. Exit\n";
+        cout << "10. Sort Questions\n";
+        cout << "11. Exit\n";
         cout << "====================================\n";
 
         cout << "\nEnter Choice: ";
         cin >> choice;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+
+            cout << "\n====================================\n";
+            cout << "Invalid input! Please enter a number.\n";
+            cout << "====================================\n";
+
+            continue;
+        }
+
+        if (choice < 1 || choice > 11)
+        {
+            cout << "\n====================================\n";
+            cout << "Invalid choice! Please enter a number between 1 and 10.\n";
+            cout << "====================================\n";
+
+            continue;
+        }
 
         switch (choice)
         {
@@ -72,6 +94,15 @@ int main()
 
             cout << "\nEnter Title: ";
             getline(cin, title);
+
+            if (vault.questionExists(title))
+            {
+                cout << "\n====================================\n";
+                cout << "Question already exists!\n";
+                cout << "====================================\n";
+
+                break;
+            }
 
             cout << "Enter Topic: ";
             getline(cin, topic);
@@ -217,6 +248,28 @@ int main()
 
                 cout << "\nEnter Choice: ";
                 cin >> updateChoice;
+
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+
+                    cout << "\n====================================\n";
+                    cout << "Invalid input! Please enter a number.\n";
+                    cout << "====================================\n";
+
+                    continue;
+                }
+
+                if (updateChoice < 1 || updateChoice > 7)
+                {
+                    cout << "\n====================================\n";
+                    cout << "Invalid choice! Please enter a number between 1 and 7.\n";
+                    cout << "====================================\n";
+
+                    continue;
+                }
+
                 cin.ignore();
 
                 switch (updateChoice)
@@ -412,11 +465,37 @@ int main()
             cout << "       Filter Questions\n";
             cout << "====================================\n";
             cout << "1. By Difficulty\n";
-            cout << "2. Back\n";
+            cout << "2. By Language\n";
+            cout << "3. By Platform\n";
+            cout << "4. Solved Questions\n";
+            cout << "5. Favorite Questions\n";
+            cout << "6. Back\n";
             cout << "====================================\n";
 
             cout << "\nEnter Choice: ";
             cin >> filterChoice;
+
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+
+                cout << "\n====================================\n";
+                cout << "Invalid input! Please enter a number.\n";
+                cout << "====================================\n";
+
+                break;
+            }
+
+            if (filterChoice < 1 || filterChoice > 6)
+            {
+                cout << "\n====================================\n";
+                cout << "Invalid choice! Please enter a number between 1 and 6.\n";
+                cout << "====================================\n";
+
+                break;
+            }
+
             cin.ignore();
 
             switch (filterChoice)
@@ -433,6 +512,38 @@ int main()
 
             case 2:
             {
+                cout << "\nEnter Language: ";
+                getline(cin, language);
+
+                vault.filterByLanguage(language);
+
+                break;
+            }
+
+            case 3:
+            {
+                cout << "\nEnter Platform: ";
+                getline(cin, platform);
+
+                vault.filterByPlatform(platform);
+
+                break;
+            }
+
+            case 4:
+            {
+                vault.showSolvedQuestions();
+                break;
+            }
+
+            case 5:
+            {
+                vault.showFavoriteQuestions();
+                break;
+            }
+
+            case 6:
+            {
                 break;
             }
 
@@ -446,6 +557,74 @@ int main()
         }
 
         case 10:
+        {
+            int sortChoice;
+
+            cout << "\n====================================\n";
+            cout << "        Sort Questions\n";
+            cout << "====================================\n";
+            cout << "1. By Title\n";
+            cout << "2. By Difficulty\n";
+            cout << "3. By Platform\n";
+            cout << "4. By Language\n";
+            cout << "5. Back\n";
+            cout << "====================================\n";
+
+            cout << "\nEnter Choice: ";
+            cin >> sortChoice;
+
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+
+                cout << "\nInvalid input!\n";
+                break;
+            }
+
+            cin.ignore();
+
+            switch (sortChoice)
+            {
+            case 1:
+            {
+                vault.sortByTitle();
+                break;
+            }
+
+            case 2:
+            {
+                vault.sortByDifficulty();
+                break;
+            }
+
+            case 3:
+            {
+                vault.sortByPlatform();
+                break;
+            }
+
+            case 4:
+            {
+                vault.sortByLanguage();
+                break;
+            }
+
+            case 5:
+            {
+                break;
+            }
+
+            default:
+            {
+                cout << "\nFeature coming soon...\n";
+            }
+            }
+
+            break;
+        }
+
+        case 11:
         {
             cout << "\n====================================\n";
             cout << "Thank you for using CodeVault!\n";
