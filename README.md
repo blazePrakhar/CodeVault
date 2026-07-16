@@ -7,6 +7,12 @@ CodeVault is a C++ console-based coding practice management system designed to h
 ---
 
 ## ✨ Features
+- Topic Management
+- Question Management
+- Search Questions
+- Statistics Dashboard
+- File Storage
+- Filter questions by difficulty
 
 ### 📚 Question Management
 - Add new coding questions
@@ -139,3 +145,4 @@ Next milestone:
 **Prakhar**
 
 Developed as a personal developer productivity tool to organize coding practice and improve problem-solving workflow.
+🚧 Under Development

@@ -171,3 +171,26 @@ void Vault::displayStatistics() const
 
     std::cout << "====================================\n";
 }
+
+void Vault::filterByDifficulty(const std::string &difficulty) const
+{
+    bool found = false;
+
+    std::cout << "\n====================================\n";
+    std::cout << "Questions with Difficulty: " << difficulty << "\n";
+    std::cout << "====================================\n";
+
+    for (const Question &question : questions)
+    {
+        if (question.getDifficulty() == difficulty)
+        {
+            question.displayQuestion();
+            found = true;
+        }
+    }
+
+    if (!found)
+    {
+        std::cout << "\nNo questions found with this difficulty.\n";
+    }
+}

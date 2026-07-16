@@ -18,6 +18,8 @@ public:
 
     void displayStatistics() const;
 
+    void filterByDifficulty(const std::string &difficulty) const;
+
     int getQuestionCount() const;
 
     Question *searchQuestionByTitle(const std::string &title);

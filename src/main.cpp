@@ -57,7 +57,8 @@ int main()
         cout << "6. Mark Question as Solved\n";
         cout << "7. Toggle Favorite\n";
         cout << "8. View Statistics\n";
-        cout << "9. Exit\n";
+        cout << "9. Filter Questions\n";
+        cout << "10. Exit\n";
         cout << "====================================\n";
 
         cout << "\nEnter Choice: ";
@@ -404,6 +405,47 @@ int main()
         }
 
         case 9:
+        {
+            int filterChoice;
+
+            cout << "\n====================================\n";
+            cout << "       Filter Questions\n";
+            cout << "====================================\n";
+            cout << "1. By Difficulty\n";
+            cout << "2. Back\n";
+            cout << "====================================\n";
+
+            cout << "\nEnter Choice: ";
+            cin >> filterChoice;
+            cin.ignore();
+
+            switch (filterChoice)
+            {
+            case 1:
+            {
+                cout << "\nEnter Difficulty (Easy/Medium/Hard): ";
+                getline(cin, difficulty);
+
+                vault.filterByDifficulty(difficulty);
+
+                break;
+            }
+
+            case 2:
+            {
+                break;
+            }
+
+            default:
+            {
+                cout << "\nInvalid Choice!\n";
+            }
+            }
+
+            break;
+        }
+
+        case 10:
         {
             cout << "\n====================================\n";
             cout << "Thank you for using CodeVault!\n";
