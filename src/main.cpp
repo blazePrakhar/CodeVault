@@ -133,8 +133,6 @@ int main()
 
             vault.addQuestion(question);
 
-            vault.saveQuestionsToFile();
-
             cout << "\n====================================\n";
             cout << "Question Added Successfully!\n";
             cout << "Current Total Questions : "
@@ -201,7 +199,6 @@ int main()
 
             if (isDeleted)
             {
-                vault.saveQuestionsToFile();
 
                 cout << "\n====================================\n";
                 cout << "Question Deleted Successfully!\n";
@@ -354,8 +351,6 @@ int main()
                 if (updateChoice >= 1 && updateChoice <= 6)
                 {
 
-                    vault.saveQuestionsToFile();
-
                     cout << "\n====================================\n";
                     cout << "Question Updated Successfully!\n";
                     cout << "====================================\n";
@@ -392,8 +387,6 @@ int main()
                 {
                     foundQuestion->markSolved();
 
-                    vault.saveQuestionsToFile();
-
                     cout << "\n====================================\n";
                     cout << "Question marked as solved successfully!\n";
                     cout << "====================================\n";
@@ -423,8 +416,6 @@ int main()
             if (foundQuestion != nullptr)
             {
                 foundQuestion->toggleFavorite();
-
-                vault.saveQuestionsToFile();
 
                 cout << "\n====================================\n";
 

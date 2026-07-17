@@ -9,6 +9,12 @@ class Vault
 private:
     std::vector<Question> questions;
 
+    void saveQuestionsToFile() const;
+    void loadQuestionsFromFile();
+
+    int getSolvedCount() const;
+    int getFavoriteCount() const;
+
 public:
     Vault();
 
@@ -35,10 +41,6 @@ public:
     bool deleteQuestionByTitle(const std::string &title);
 
     bool questionExists(const std::string &title) const;
-
-    void saveQuestionsToFile() const;
-
-    void loadQuestionsFromFile();
 
     void sortByTitle();
 

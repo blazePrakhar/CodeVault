@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "../include/vault.h"
 #include <algorithm>
+#include <iomanip>
+#include "../include/vault.h"
 
 std::string toLower(std::string text)
 {
@@ -22,6 +23,7 @@ Vault::Vault()
 void Vault::addQuestion(const Question &question)
 {
     questions.push_back(question);
+    saveQuestionsToFile();
 }
 
 void Vault::displayAllQuestions() const
@@ -65,6 +67,7 @@ bool Vault::deleteQuestionByTitle(const std::string &title)
         if (it->getTitle() == title)
         {
             questions.erase(it);
+            saveQuestionsToFile();
             return true;
         }
     }
@@ -150,37 +153,68 @@ void Vault::loadQuestionsFromFile()
     file.close();
 }
 
-void Vault::displayStatistics() const
+int Vault::getSolvedCount() const
 {
-    int totalQuestions = questions.size();
-    int solvedQuestions = 0;
-    int favoriteQuestions = 0;
+    int count = 0;
 
     for (const Question &question : questions)
     {
         if (question.isSolved())
         {
-            solvedQuestions++;
-        }
-
-        if (question.isFavorite())
-        {
-            favoriteQuestions++;
+            count++;
         }
     }
 
+    return count;
+}
+
+int Vault::getFavoriteCount() const
+{
+    int count = 0;
+
+    for (const Question &question : questions)
+    {
+        if (question.isFavorite())
+        {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+void Vault::displayStatistics() const
+{
+    int totalQuestions = questions.size();
+    int solvedQuestions = getSolvedCount();
+    int favoriteQuestions = getFavoriteCount();
     int unsolvedQuestions = totalQuestions - solvedQuestions;
 
-    std::cout << "\n====================================\n";
-    std::cout << "      CodeVault Statistics\n";
-    std::cout << "====================================\n";
+    double completionPercentage = 0.0;
 
-    std::cout << "Total Questions     : " << totalQuestions << std::endl;
-    std::cout << "Solved Questions    : " << solvedQuestions << std::endl;
-    std::cout << "Unsolved Questions  : " << unsolvedQuestions << std::endl;
-    std::cout << "Favorite Questions  : " << favoriteQuestions << std::endl;
+    if (totalQuestions > 0)
+    {
+        completionPercentage =
+            (static_cast<double>(solvedQuestions) / totalQuestions) * 100;
+    }
 
-    std::cout << "====================================\n";
+    std::cout << "\n=========================================\n";
+    std::cout << "         CodeVault Dashboard\n";
+    std::cout << "=========================================\n";
+
+    std::cout << "Total Questions : " << totalQuestions << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "Solved          : " << solvedQuestions << std::endl;
+    std::cout << "Unsolved        : " << unsolvedQuestions << std::endl;
+    std::cout << "Completion      : "
+              << std::fixed << std::setprecision(1)
+              << completionPercentage << "%" << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "Favorites       : " << favoriteQuestions << std::endl;
+
+    std::cout << "=========================================\n";
 }
 
 void Vault::filterByDifficulty(const std::string &difficulty) const
