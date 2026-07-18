@@ -59,7 +59,11 @@ int main()
         cout << "8. View Statistics\n";
         cout << "9. Filter Questions\n";
         cout << "10. Sort Questions\n";
-        cout << "11. Exit\n";
+        cout << "11. Export Report\n";
+        cout << "12. Backup Questions\n";
+        cout << "13. Restore Questions\n";
+        cout << "14. Recently Viewed Questions\n";
+        cout << "15. Exit\n";
         cout << "====================================\n";
 
         cout << "\nEnter Choice: ";
@@ -77,12 +81,12 @@ int main()
             continue;
         }
 
-        if (choice < 1 || choice > 11)
+        if (choice < 1 || choice > 15)
         {
-            cout << "\n====================================\n";
-            cout << "Invalid choice! Please enter a number between 1 and 10.\n";
-            cout << "====================================\n";
-
+            std::cout << "\n====================================\n";
+            std::cout << "Invalid Menu Choice!\n";
+            std::cout << "Please select a valid option.\n";
+            std::cout << "====================================\n";
             continue;
         }
 
@@ -94,6 +98,14 @@ int main()
 
             cout << "\nEnter Title: ";
             getline(cin, title);
+
+            if (title.empty())
+            {
+                std::cout << "\n====================================\n";
+                std::cout << "Title cannot be empty!\n";
+                std::cout << "====================================\n";
+                break;
+            }
 
             if (vault.questionExists(title))
             {
@@ -107,14 +119,49 @@ int main()
             cout << "Enter Topic: ";
             getline(cin, topic);
 
+            if (topic.empty())
+            {
+                std::cout << "\n====================================\n";
+                std::cout << "Topic cannot be empty!\n";
+                std::cout << "====================================\n";
+                break;
+            }
+
             cout << "Enter Difficulty: ";
             getline(cin, difficulty);
+
+            if (difficulty != "Easy" &&
+                difficulty != "Medium" &&
+                difficulty != "Hard")
+            {
+                std::cout << "\n====================================\n";
+                std::cout << "Invalid Difficulty!\n";
+                std::cout << "Enter only: Easy, Medium or Hard.\n";
+                std::cout << "====================================\n";
+                break;
+            }
 
             cout << "Enter Platform: ";
             getline(cin, platform);
 
+            if (platform.empty())
+            {
+                std::cout << "\n====================================\n";
+                std::cout << "Platform cannot be empty!\n";
+                std::cout << "====================================\n";
+                break;
+            }
+
             cout << "Enter Language: ";
             getline(cin, language);
+
+            if (language.empty())
+            {
+                std::cout << "\n====================================\n";
+                std::cout << "Language cannot be empty!\n";
+                std::cout << "====================================\n";
+                break;
+            }
 
             solutionPath = FileManager::createSolutionFile(title,
                                                            language);
@@ -260,11 +307,11 @@ int main()
 
                 if (updateChoice < 1 || updateChoice > 7)
                 {
-                    cout << "\n====================================\n";
-                    cout << "Invalid choice! Please enter a number between 1 and 7.\n";
-                    cout << "====================================\n";
-
-                    continue;
+                    std::cout << "\n====================================\n";
+                    std::cout << "Invalid Update Choice!\n";
+                    std::cout << "Please select a valid option.\n";
+                    std::cout << "====================================\n";
+                    break;
                 }
 
                 cin.ignore();
@@ -465,6 +512,7 @@ int main()
 
             cout << "\nEnter Choice: ";
             cin >> filterChoice;
+            cin.ignore();
 
             if (cin.fail())
             {
@@ -478,16 +526,14 @@ int main()
                 break;
             }
 
-            if (filterChoice < 1 || filterChoice > 6)
+            if (filterChoice < 1 || filterChoice > 4)
             {
-                cout << "\n====================================\n";
-                cout << "Invalid choice! Please enter a number between 1 and 6.\n";
-                cout << "====================================\n";
-
+                std::cout << "\n====================================\n";
+                std::cout << "Invalid Filter Choice!\n";
+                std::cout << "Please select a valid option.\n";
+                std::cout << "====================================\n";
                 break;
             }
-
-            cin.ignore();
 
             switch (filterChoice)
             {
@@ -563,6 +609,7 @@ int main()
 
             cout << "\nEnter Choice: ";
             cin >> sortChoice;
+            cin.ignore();
 
             if (cin.fail())
             {
@@ -572,8 +619,14 @@ int main()
                 cout << "\nInvalid input!\n";
                 break;
             }
-
-            cin.ignore();
+            if (sortChoice < 1 || sortChoice > 5)
+            {
+                std::cout << "\n====================================\n";
+                std::cout << "Invalid Sort Choice!\n";
+                std::cout << "Please select a valid option.\n";
+                std::cout << "====================================\n";
+                break;
+            }
 
             switch (sortChoice)
             {
@@ -616,6 +669,22 @@ int main()
         }
 
         case 11:
+            vault.exportReport();
+            break;
+
+        case 12:
+            vault.backupQuestions();
+            break;
+
+        case 13:
+            vault.restoreQuestions();
+            break;
+
+        case 14:
+            vault.viewRecentQuestions();
+            break;
+
+        case 15:
         {
             cout << "\n====================================\n";
             cout << "Thank you for using CodeVault!\n";

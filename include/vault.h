@@ -15,6 +15,20 @@ private:
     int getSolvedCount() const;
     int getFavoriteCount() const;
 
+    int getEasyCount() const;
+    int getMediumCount() const;
+    int getHardCount() const;
+
+    int getCppCount() const;
+    int getJavaCount() const;
+    int getPythonCount() const;
+    int getJavaScriptCount() const;
+
+    int getLeetCodeCount() const;
+    int getGeeksforGeeksCount() const;
+
+    std::vector<Question> recentQuestions;
+
 public:
     Vault();
 
@@ -23,6 +37,8 @@ public:
     void displayAllQuestions() const;
 
     void displayStatistics() const;
+
+    void exportReport() const;
 
     void filterByDifficulty(const std::string &difficulty) const;
 
@@ -49,6 +65,11 @@ public:
     void sortByPlatform();
 
     void sortByLanguage();
+
+    void backupQuestions() const;
+    void restoreQuestions();
+
+    void viewRecentQuestions() const;
 };
 
 #endif
