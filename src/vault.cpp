@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cstdio>
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
@@ -22,9 +23,9 @@ Vault::Vault()
 
 void Vault::addQuestion(const Question &question)
 {
-    for (const auto &question : questions)
+    for (const auto &q : questions)
     {
-        if (question.getTitle() == question.getTitle())
+        if (toLower(q.getTitle()) == toLower(question.getTitle()))
         {
             std::cout << "\n====================================\n";
             std::cout << "Question already exists!\n";
@@ -61,7 +62,7 @@ Question *Vault::searchQuestionByTitle(const std::string &title)
 {
     for (Question &question : questions)
     {
-        if (question.getTitle() == title)
+        if (toLower(question.getTitle()) == toLower(title))
         {
             bool alreadyExists = false;
 
@@ -90,10 +91,29 @@ bool Vault::deleteQuestionByTitle(const std::string &title)
 {
     for (auto it = questions.begin(); it != questions.end(); ++it)
     {
-        if (it->getTitle() == title)
+        if (toLower(it->getTitle()) == toLower(title))
         {
+            std::string solutionPath = it->getSolutionPath();
+
             questions.erase(it);
+
             saveQuestionsToFile();
+
+            if (!solutionPath.empty())
+            {
+                if (std::remove(solutionPath.c_str()) == 0)
+                {
+                    std::cout << "\n====================================\n";
+                    std::cout << "Solution file deleted successfully!\n";
+                    std::cout << "====================================\n";
+                }
+                else
+                {
+                    std::cout << "\n====================================\n";
+                    std::cout << "Solution file not found or could not be deleted.\n";
+                    std::cout << "====================================\n";
+                }
+            }
             return true;
         }
     }
@@ -382,7 +402,7 @@ void Vault::filterByDifficulty(const std::string &difficulty) const
 
     for (const Question &question : questions)
     {
-        if (question.getDifficulty() == difficulty)
+        if (toLower(question.getDifficulty()) == toLower(difficulty))
         {
             question.displayQuestion();
             found = true;
@@ -405,7 +425,7 @@ void Vault::filterByLanguage(const std::string &language) const
 
     for (const Question &question : questions)
     {
-        if (question.getLanguage() == language)
+        if (toLower(question.getLanguage()) == toLower(language))
         {
             question.displayQuestion();
             found = true;
@@ -428,7 +448,7 @@ void Vault::filterByPlatform(const std::string &platform) const
 
     for (const Question &question : questions)
     {
-        if (question.getPlatform() == platform)
+        if (toLower(question.getPlatform()) == toLower(platform))
         {
             question.displayQuestion();
             found = true;
@@ -493,7 +513,7 @@ void Vault::sortByTitle()
               questions.end(),
               [](const Question &a, const Question &b)
               {
-                  return a.getTitle() < b.getTitle();
+                  return toLower(a.getTitle()) < toLower(b.getTitle());
               });
 
     std::cout << "\n====================================\n";
@@ -509,7 +529,7 @@ void Vault::sortByPlatform()
               questions.end(),
               [](const Question &a, const Question &b)
               {
-                  return a.getPlatform() < b.getPlatform();
+                  return toLower(a.getPlatform()) < toLower(b.getPlatform());
               });
 
     std::cout << "\n====================================\n";
@@ -525,7 +545,7 @@ void Vault::sortByLanguage()
               questions.end(),
               [](const Question &a, const Question &b)
               {
-                  return a.getLanguage() < b.getLanguage();
+                  return toLower(a.getLanguage()) < toLower(b.getLanguage());
               });
 
     std::cout << "\n====================================\n";

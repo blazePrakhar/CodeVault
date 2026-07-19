@@ -6,6 +6,9 @@
 
 using namespace std;
 
+//==================================================
+// Utility Functions
+//==================================================
 string generateFileName(string title)
 {
     for (char &c : title)
@@ -23,14 +26,110 @@ string generateFileName(string title)
     return title;
 }
 
+//==================================================
+// UI Helper Functions
+//==================================================
+void showMessage(const std::string &message)
+{
+    cout << "\n====================================\n";
+    cout << message << '\n';
+    cout << "====================================\n";
+}
+
+void displayMainMenu()
+{
+    cout << "\n====================================\n";
+    cout << "        CodeVault v2.0\n";
+    cout << "====================================\n";
+    cout << "1. Add Question\n";
+    cout << "2. Display Questions\n";
+    cout << "3. Search Question\n";
+    cout << "4. Delete Question\n";
+    cout << "5. Update Question\n";
+    cout << "6. Mark Question as Solved\n";
+    cout << "7. Toggle Favorite\n";
+    cout << "8. View Statistics\n";
+    cout << "9. Filter Questions\n";
+    cout << "10. Sort Questions\n";
+    cout << "11. Export Report\n";
+    cout << "12. Backup Questions\n";
+    cout << "13. Restore Questions\n";
+    cout << "14. Recently Viewed Questions\n";
+    cout << "15. Exit\n";
+    cout << "====================================\n";
+}
+
+void displayUpdateMenu()
+{
+    cout << "\n====================================\n";
+    cout << "          Update Menu\n";
+    cout << "====================================\n";
+    cout << "1. Title\n";
+    cout << "2. Topic\n";
+    cout << "3. Difficulty\n";
+    cout << "4. Platform\n";
+    cout << "5. Language\n";
+    cout << "6. Solution File\n";
+    cout << "7. Cancel\n";
+    cout << "====================================\n";
+}
+
+void displayFilterMenu()
+{
+    cout << "\n====================================\n";
+    cout << "        Filter Questions\n";
+    cout << "====================================\n";
+    cout << "1. By Difficulty\n";
+    cout << "2. By Language\n";
+    cout << "3. By Platform\n";
+    cout << "4. Solved Questions\n";
+    cout << "5. Favorite Questions\n";
+    cout << "6. Back\n";
+    cout << "====================================\n";
+}
+
+void displaySortMenu()
+{
+    cout << "\n====================================\n";
+    cout << "         Sort Questions\n";
+    cout << "====================================\n";
+    cout << "1. By Title\n";
+    cout << "2. By Difficulty\n";
+    cout << "3. By Platform\n";
+    cout << "4. By Language\n";
+    cout << "5. Back\n";
+    cout << "====================================\n";
+}
+
+void displayDeleteConfirmation(const string &title)
+{
+    cout << "\n====================================\n";
+    cout << "Delete Confirmation\n";
+    cout << "====================================\n";
+    cout << "Are you sure you want to delete:\n";
+    cout << title << "\n\n";
+    cout << "1. Yes\n";
+    cout << "2. No\n";
+    cout << "====================================\n";
+    cout << "Enter Choice: ";
+}
+
+//==================================================
+// Constants
+//==================================================
+const int MAX_MAIN_MENU = 15;
+const int MAX_UPDATE_MENU = 7;
+const int MAX_SORT_MENU = 5;
+const int MAX_FILTER_MENU = 6;
+
+//==================================================
+// Main Function
+//==================================================
 int main()
 {
     Vault vault;
 
-    cout << "====================================\n";
-    cout << "      Welcome to CodeVault!\n";
-    cout << " Your Personal Coding Manager\n";
-    cout << "====================================\n\n";
+    showMessage("Welcome to CodeVault!\nYour Personal Coding Manager\n");
 
     int choice;
 
@@ -46,25 +145,7 @@ int main()
 
     while (true)
     {
-        cout << "\n====================================\n";
-        cout << "         CodeVault v2.0\n";
-        cout << "====================================\n";
-        cout << "1. Add Question\n";
-        cout << "2. Display Questions\n";
-        cout << "3. Search Question\n";
-        cout << "4. Delete Question\n";
-        cout << "5. Update Question\n";
-        cout << "6. Mark Question as Solved\n";
-        cout << "7. Toggle Favorite\n";
-        cout << "8. View Statistics\n";
-        cout << "9. Filter Questions\n";
-        cout << "10. Sort Questions\n";
-        cout << "11. Export Report\n";
-        cout << "12. Backup Questions\n";
-        cout << "13. Restore Questions\n";
-        cout << "14. Recently Viewed Questions\n";
-        cout << "15. Exit\n";
-        cout << "====================================\n";
+        displayMainMenu();
 
         cout << "\nEnter Choice: ";
         cin >> choice;
@@ -74,19 +155,14 @@ int main()
             cin.clear();
             cin.ignore(10000, '\n');
 
-            cout << "\n====================================\n";
-            cout << "Invalid input! Please enter a number.\n";
-            cout << "====================================\n";
+            showMessage("Invalid input! Please enter a number.\n");
 
             continue;
         }
 
-        if (choice < 1 || choice > 15)
+        if (choice < 1 || choice > MAX_MAIN_MENU)
         {
-            std::cout << "\n====================================\n";
-            std::cout << "Invalid Menu Choice!\n";
-            std::cout << "Please select a valid option.\n";
-            std::cout << "====================================\n";
+            showMessage("Invalid Menu Choice!\nPlease select a valid option.\n");
             continue;
         }
 
@@ -101,17 +177,13 @@ int main()
 
             if (title.empty())
             {
-                std::cout << "\n====================================\n";
-                std::cout << "Title cannot be empty!\n";
-                std::cout << "====================================\n";
+                showMessage("Title cannot be empty!\n");
                 break;
             }
 
             if (vault.questionExists(title))
             {
-                cout << "\n====================================\n";
-                cout << "Question already exists!\n";
-                cout << "====================================\n";
+                showMessage("Question already exists!\n");
 
                 break;
             }
@@ -121,9 +193,7 @@ int main()
 
             if (topic.empty())
             {
-                std::cout << "\n====================================\n";
-                std::cout << "Topic cannot be empty!\n";
-                std::cout << "====================================\n";
+                showMessage("Topic cannot be empty!\n");
                 break;
             }
 
@@ -134,10 +204,7 @@ int main()
                 difficulty != "Medium" &&
                 difficulty != "Hard")
             {
-                std::cout << "\n====================================\n";
-                std::cout << "Invalid Difficulty!\n";
-                std::cout << "Enter only: Easy, Medium or Hard.\n";
-                std::cout << "====================================\n";
+                showMessage("Invalid Difficulty!\nEnter only: Easy, Medium or Hard.\n");
                 break;
             }
 
@@ -146,9 +213,7 @@ int main()
 
             if (platform.empty())
             {
-                std::cout << "\n====================================\n";
-                std::cout << "Platform cannot be empty!\n";
-                std::cout << "====================================\n";
+                showMessage("Platform cannot be empty!\n");
                 break;
             }
 
@@ -157,9 +222,7 @@ int main()
 
             if (language.empty())
             {
-                std::cout << "\n====================================\n";
-                std::cout << "Language cannot be empty!\n";
-                std::cout << "====================================\n";
+                showMessage("Language cannot be empty!\n");
                 break;
             }
 
@@ -219,17 +282,13 @@ int main()
 
             if (foundQuestion != nullptr)
             {
-                cout << "\n====================================\n";
-                cout << "Question Found Successfully!\n";
-                cout << "====================================\n";
+                showMessage("Question Found Successfully!\n");
 
                 foundQuestion->displayQuestion();
             }
             else
             {
-                cout << "\n====================================\n";
-                cout << "No matching question found.\n";
-                cout << "====================================\n";
+                showMessage("No matching question found.\n");
             }
 
             break;
@@ -241,6 +300,18 @@ int main()
 
             cout << "\nEnter Exact Question Title to Delete: ";
             getline(cin, title);
+
+            int confirm;
+
+            displayDeleteConfirmation(title);
+            cin >> confirm;
+            cin.ignore();
+
+            if (confirm != 1)
+            {
+                showMessage("Deletion Cancelled.\n");
+                break;
+            }
 
             isDeleted = vault.deleteQuestionByTitle(title);
 
@@ -255,9 +326,7 @@ int main()
             }
             else
             {
-                cout << "\n====================================\n";
-                cout << "Question Not Found!\n";
-                cout << "====================================\n";
+                showMessage("Question Not Found!\n");
             }
 
             break;
@@ -279,16 +348,7 @@ int main()
 
                 int updateChoice;
 
-                cout << "\n====================================\n";
-                cout << "What do you want to update?\n";
-                cout << "====================================\n";
-                cout << "1. Title\n";
-                cout << "2. Topic\n";
-                cout << "3. Difficulty\n";
-                cout << "4. Platform\n";
-                cout << "5. Language\n";
-                cout << "6. Solution File\n";
-                cout << "7. Cancel\n";
+                displayUpdateMenu();
 
                 cout << "\nEnter Choice: ";
                 cin >> updateChoice;
@@ -298,19 +358,14 @@ int main()
                     cin.clear();
                     cin.ignore(10000, '\n');
 
-                    cout << "\n====================================\n";
-                    cout << "Invalid input! Please enter a number.\n";
-                    cout << "====================================\n";
+                    showMessage("Invalid input! Please enter a number.\n");
 
                     continue;
                 }
 
-                if (updateChoice < 1 || updateChoice > 7)
+                if (updateChoice < 1 || updateChoice > MAX_UPDATE_MENU)
                 {
-                    std::cout << "\n====================================\n";
-                    std::cout << "Invalid Update Choice!\n";
-                    std::cout << "Please select a valid option.\n";
-                    std::cout << "====================================\n";
+                    showMessage("Invalid Update Choice!\nPlease select a valid option.\n");
                     break;
                 }
 
@@ -398,16 +453,14 @@ int main()
                 if (updateChoice >= 1 && updateChoice <= 6)
                 {
 
-                    cout << "\n====================================\n";
-                    cout << "Question Updated Successfully!\n";
-                    cout << "====================================\n";
+                    showMessage("Question Updated Successfully!\n");
 
                     foundQuestion->displayQuestion();
                 }
             }
             else
             {
-                cout << "\nQuestion Not Found!\n";
+                showMessage("Question Not Found!");
             }
 
             break;
@@ -426,26 +479,20 @@ int main()
             {
                 if (foundQuestion->isSolved())
                 {
-                    cout << "\n====================================\n";
-                    cout << "Question is already marked as solved.\n";
-                    cout << "====================================\n";
+                    showMessage("Question is already marked as solved.\n");
                 }
                 else
                 {
                     foundQuestion->markSolved();
 
-                    cout << "\n====================================\n";
-                    cout << "Question marked as solved successfully!\n";
-                    cout << "====================================\n";
+                    showMessage("Question marked as solved successfully!\n");
 
                     foundQuestion->displayQuestion();
                 }
             }
             else
             {
-                cout << "\n====================================\n";
-                cout << "Question Not Found!\n";
-                cout << "====================================\n";
+                showMessage("Question Not Found!\n");
             }
 
             break;
@@ -468,11 +515,11 @@ int main()
 
                 if (foundQuestion->isFavorite())
                 {
-                    cout << "Question added to favorites!\n";
+                    showMessage("Question added to favorites!");
                 }
                 else
                 {
-                    cout << "Question removed from favorites!\n";
+                    showMessage("Question removed from favorites!");
                 }
 
                 cout << "====================================\n";
@@ -481,9 +528,7 @@ int main()
             }
             else
             {
-                cout << "\n====================================\n";
-                cout << "Question Not Found!\n";
-                cout << "====================================\n";
+                showMessage("Question Not Found!\n");
             }
 
             break;
@@ -499,16 +544,7 @@ int main()
         {
             int filterChoice;
 
-            cout << "\n====================================\n";
-            cout << "       Filter Questions\n";
-            cout << "====================================\n";
-            cout << "1. By Difficulty\n";
-            cout << "2. By Language\n";
-            cout << "3. By Platform\n";
-            cout << "4. Solved Questions\n";
-            cout << "5. Favorite Questions\n";
-            cout << "6. Back\n";
-            cout << "====================================\n";
+            displayFilterMenu();
 
             cout << "\nEnter Choice: ";
             cin >> filterChoice;
@@ -519,19 +555,14 @@ int main()
                 cin.clear();
                 cin.ignore(10000, '\n');
 
-                cout << "\n====================================\n";
-                cout << "Invalid input! Please enter a number.\n";
-                cout << "====================================\n";
+                showMessage("Invalid input! Please enter a number.\n");
 
                 break;
             }
 
-            if (filterChoice < 1 || filterChoice > 4)
+            if (filterChoice < 1 || filterChoice > MAX_FILTER_MENU)
             {
-                std::cout << "\n====================================\n";
-                std::cout << "Invalid Filter Choice!\n";
-                std::cout << "Please select a valid option.\n";
-                std::cout << "====================================\n";
+                showMessage("Invalid Filter Choice!\nPlease select a valid option.\n");
                 break;
             }
 
@@ -597,15 +628,7 @@ int main()
         {
             int sortChoice;
 
-            cout << "\n====================================\n";
-            cout << "        Sort Questions\n";
-            cout << "====================================\n";
-            cout << "1. By Title\n";
-            cout << "2. By Difficulty\n";
-            cout << "3. By Platform\n";
-            cout << "4. By Language\n";
-            cout << "5. Back\n";
-            cout << "====================================\n";
+            displaySortMenu();
 
             cout << "\nEnter Choice: ";
             cin >> sortChoice;
@@ -616,15 +639,12 @@ int main()
                 cin.clear();
                 cin.ignore(10000, '\n');
 
-                cout << "\nInvalid input!\n";
+                showMessage("Invalid input! Please enter a number.");
                 break;
             }
-            if (sortChoice < 1 || sortChoice > 5)
+            if (sortChoice < 1 || sortChoice > MAX_SORT_MENU)
             {
-                std::cout << "\n====================================\n";
-                std::cout << "Invalid Sort Choice!\n";
-                std::cout << "Please select a valid option.\n";
-                std::cout << "====================================\n";
+                showMessage("Invalid Sort Choice!\nPlease select a valid option.\n");
                 break;
             }
 
@@ -686,18 +706,13 @@ int main()
 
         case 15:
         {
-            cout << "\n====================================\n";
-            cout << "Thank you for using CodeVault!\n";
-            cout << "Happy Coding!\n";
-            cout << "====================================\n";
+            showMessage("Thank you for using CodeVault!\nHappy Coding!\n");
             return 0;
         }
 
         default:
         {
-            cout << "\n====================================\n";
-            cout << "Invalid Choice! Please try again.\n";
-            cout << "====================================\n";
+            showMessage("Invalid Choice! Please try again.\n");
         }
         }
     }
