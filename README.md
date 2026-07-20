@@ -1,142 +1,149 @@
-# CodeVault
+# 📚 CodeVault
 
-## 📖 Description
-
-CodeVault is a C++ console-based coding practice management system designed to help programmers organize coding questions, automatically manage solution files, and track problem-solving progress. The project follows Object-Oriented Programming principles and uses persistent file storage to maintain data across sessions.
-
----
+A C++ console-based coding question management system designed to organize programming problems efficiently. CodeVault helps developers store, search, update, categorize, and manage coding questions with persistent file storage, statistics, filtering, sorting, and backup capabilities.
 
 ## ✨ Features
-- Topic Management
-- Question Management
-- Search Questions
-- Statistics Dashboard
-- File Storage
-- Filter questions by difficulty
 
-### 📚 Question Management
-- Add new coding questions
-- Display all stored questions
-- Search questions by title
-- Update individual question details
-- Delete questions
+- Add, update, search, and delete coding questions
+- Persistent data storage using text files
+- Case-insensitive search and filtering
+- Sort questions by title, difficulty, platform, and language
+- Track solved and favorite questions
+- Generate language-specific solution files
+- View coding statistics
+- Backup and restore question data
+- Export question reports
+- Recently viewed questions
+- Input validation and duplicate detection
 
-### 💾 Data Persistence
-- Save questions to a local text file
-- Automatically load saved questions on application startup
-- Persist solved and favorite status
+## 🛠️ Tech Stack
 
-### 📁 Automatic Solution Management
-- Automatically generate solution file paths
-- Create solution files based on programming language
-- Generate starter code templates
-- Organize solutions into language-specific folders
-
-### 📈 Progress Tracking
-- Mark questions as solved
-- Add or remove questions from favorites
-- Track coding progress across sessions
-
-### 📊 Statistics Dashboard
-- Total Questions
-- Solved Questions
-- Unsolved Questions
-- Favorite Questions
-
----
-
-## 🛠️ Technologies Used
-
-- C++
-- Object-Oriented Programming (OOP)
-- Standard Template Library (STL)
-- File Handling
-- String Manipulation
-- Modular Programming
-- Git
-- GitHub
+| Category | Technologies |
+|----------|--------------|
+| Programming Language | C++ |
+| Concepts Used | Object-Oriented Programming (OOP), File Handling, STL |
+| Data Storage | Text Files |
+| IDE | Visual Studio Code |
+| Compiler | g++ |
 
 ---
 
 ## 📂 Project Structure
 
-```text
+```
 CodeVault/
 │
-├── data/
-│   └── questions.txt
-│
-├── include/
-│   ├── question.h
-│   ├── vault.h
-│   └── fileManager.h
-│
-├── src/
-│   ├── main.cpp
-│   ├── question.cpp
-│   ├── vault.cpp
-│   └── fileManager.cpp
-│
-├── solutions/
+├── assets/                 # Project assets
+├── data/                   # Stores question database and backups
+├── docs/                   # Documentation
+├── include/                # Header files
+├── screenshots/            # Application screenshots
+├── solutions/              # Generated solution files
 │   ├── cpp/
 │   ├── java/
-│   ├── python/
-│   └── javascript/
-│
-└── README.md
+│   ├── javascript/
+│   └── python/
+├── src/                    # Source files
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
 
 ---
 
-## 🚀 Current Features
+## 🚀 Installation
 
-- ✅ CRUD Operations
-- ✅ Search Functionality
-- ✅ Field-wise Question Updates
-- ✅ Persistent File Storage
-- ✅ Automatic Solution File Generation
-- ✅ Language-specific Code Templates
-- ✅ Progress Tracking (Solved & Favorite)
-- ✅ Statistics Dashboard
+### Clone the Repository
 
----
+```bash
+git clone https://github.com/blazePrakhar/CodeVault.git
+```
 
-## 🔄 Upcoming Features
+### Navigate to the Project Directory
 
-- Filter Questions
-- Sort Questions
-- Duplicate Question Detection
-- Enhanced Analytics Dashboard
-- Export Reports
+```bash
+cd CodeVault
+```
 
----
+### Compile the Project
 
-## 🎯 Software Engineering Concepts Demonstrated
+```bash
+g++ src/main.cpp src/question.cpp src/vault.cpp src/filemanager.cpp -o CodeVault
+```
 
-- Object-Oriented Programming
-- Encapsulation
-- Modular Design
-- File Handling
-- Data Persistence
-- CRUD Operations
-- Search Algorithms
-- String Processing
-- Automatic File Generation
-- Separation of Concerns
+### Run the Application
+
+**Windows**
+
+```bash
+CodeVault.exe
+```
+
+**Linux / macOS**
+
+```bash
+./CodeVault
+```
 
 ---
 
-## 📌 Project Status
+## 💻 Usage
 
-🟢 **Active Development (Version 2.0)**
+After launching the application, you can:
 
-Current milestone completed:
-- ✅ Core Question Management
-- ✅ Solution File Management
-- ✅ Progress Tracking & Statistics
+- ➕ Add new coding questions
+- 🔍 Search questions by title
+- ✏️ Update question details
+- 🗑️ Delete questions
+- ⭐ Mark questions as favorites
+- ✅ Mark questions as solved
+- 📊 View coding statistics
+- 🔎 Filter questions by language, platform, or difficulty
+- 📑 Sort questions for better organization
+- 📤 Export reports
+- 💾 Backup and restore question data
+- 🕒 View recently accessed questions
 
-Next milestone:
-- 🚀 Filtering, Sorting & Advanced Analytics
+---
+
+## 🌟 Key Highlights
+
+- 📂 Well-structured project following Object-Oriented Programming principles.
+- 💾 Persistent storage using text files with automatic data loading.
+- 🔍 Case-insensitive search, filtering, sorting, and duplicate detection.
+- ⭐ Favorite and solved question tracking for better progress management.
+- 📊 Built-in statistics and analytics for coding practice.
+- 🔄 Backup and restore functionality to prevent data loss.
+- 📝 Automatic generation of language-specific solution files.
+- 🛡️ Input validation to handle invalid or unexpected user input gracefully.
+
+---
+
+## 📸 Screenshots
+
+> Screenshots will be added soon.
+
+Suggested screenshots:
+
+1. Main Menu
+2. Add Question
+3. Display Questions
+4. Search Question
+5. Statistics Dashboard
+6. Filter & Sort Menu
+
+---
+
+## 🚀 Future Enhancements
+
+- Database integration (SQLite/MySQL)
+- User authentication and profiles
+- GUI version using Qt
+- Cloud synchronization
+- Import/Export in CSV and JSON formats
+- Advanced search with multiple filters
+- Coding progress dashboard
+- Difficulty-wise performance tracking
 
 ---
 
@@ -144,5 +151,5 @@ Next milestone:
 
 **Prakhar**
 
-Developed as a personal developer productivity tool to organize coding practice and improve problem-solving workflow.
-🚧 Under Development
+- GitHub: https://github.com/blazePrakhar
+- LinkedIn: https://www.linkedin.com/in/blazeprakhar
