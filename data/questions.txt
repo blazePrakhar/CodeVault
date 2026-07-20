@@ -1,0 +1,5 @@
+Two Sum|Arrays|Easy|LeetCode|C++|solutions/cpp/two_sum.cpp|0|0
+Merge Intervals|Arrays|Medium|LeetCode|C++|solutions/cpp/merge_intervals.cpp|0|0
+Binary Tree Inorder Traversal|Trees|Easy|LeetCode|Java|solutions/java/binary_tree_inorder_traversal.java|0|0
+Dijkstra Algorithm|Graph|Hard|GeeksforGeeks|C++|solutions/cpp/dijkstra_algorithm.cpp|0|0
+Longest Common Subsequence|Dynamic Programming|Medium|LeetCode|Python|solutions/python/longest_common_subsequence.py|0|0

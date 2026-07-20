@@ -121,16 +121,43 @@ After launching the application, you can:
 
 ## 📸 Screenshots
 
-> Screenshots will be added soon.
+### 🏠 Main Menu
 
-Suggested screenshots:
+![Main Menu](screenshots/main-menu.png)
 
-1. Main Menu
-2. Add Question
-3. Display Questions
-4. Search Question
-5. Statistics Dashboard
-6. Filter & Sort Menu
+---
+
+### ➕ Add Question
+
+![Add Question](screenshots/add-question.png)
+
+---
+
+### 📋 Display Questions (Part 1)
+
+![Display Questions Part 1](screenshots/display-questions-1.png)
+
+---
+
+### 📋 Display Questions (Part 2)
+
+![Display Questions Part 2](screenshots/display-questions-2.png)
+
+---
+
+### 🔍 Case-Insensitive Search
+
+Searching for **"two sum"** successfully finds **"Two Sum"**.
+
+![Search Question](screenshots/search-question.png)
+
+---
+
+### 📊 Statistics Dashboard
+
+Track coding progress with question statistics, completion percentage, difficulty distribution, language distribution, and platform distribution.
+
+![Statistics Dashboard](screenshots/statistics.png)
 
 ---
 
